@@ -19,7 +19,7 @@ const response = await fetch('/api/workouts')
 }
 
  fetchWorkouts()
-}, [])
+}, [dispatch])
 
     return (
         <div className="home">

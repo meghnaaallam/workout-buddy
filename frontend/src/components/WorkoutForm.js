@@ -8,6 +8,7 @@ const WorkoutForm = () => {
     const [reps, setReps] = useState('')
     const [load, setLoad] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
     
  const handleSubmit = async (e) => {
     e.preventDefault()
@@ -31,6 +32,7 @@ setError(json.error)
     setReps('')
     setLoad('')
     setError(null)
+    setEmptyFields([])
     console.log('new workout added',json)
     dispatch({type: 'CREATE_WORKOUT', payload: json})
    }
@@ -45,6 +47,7 @@ setError(json.error)
 type="text"
 onChange={(e) => setTitle(e.target.value)}
 value={title}
+className={emptyFields.includes('title') ? 'error' : ''}
 />
 
 <label>Reps: </label>
@@ -52,6 +55,7 @@ value={title}
 type="number"
 onChange={(e) => setReps(e.target.value)}
 value={reps}
+className={emptyFields.includes('reps') ? 'error' : ''}
 />
 
 <label>Load (in kgs): </label>
@@ -59,6 +63,7 @@ value={reps}
 type="number"
 onChange={(e) => setLoad(e.target.value)}
 value={load}
+className={emptyFields.includes('load') ? 'error' : ''}
 />
 
 <button>Add Workout</button>
